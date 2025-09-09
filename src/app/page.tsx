@@ -23,37 +23,16 @@ export default function Home() {
     
     setGeneration({ status: 'generating', progress: 'Generating your site...' });
 
-    try {
-      const requestBody: GenerateRequest = { prompt: prompt.trim() };
-      
-      const response = await fetch('/api/generate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        const errorData = data as ErrorResponse;
-        setGeneration({ 
-          status: 'error', 
-          error: errorData.message || errorData.error || 'Generation failed' 
-        });
-        return;
-      }
-
-      const result = data as GenerateResponse;
-      setGeneration({ status: 'success', result });
-
-    } catch {
+    // Demo mode - show success after delay
+    setTimeout(() => {
       setGeneration({ 
-        status: 'error', 
-        error: 'Network error. Please check your connection and try again.' 
+        status: 'success', 
+        result: {
+          shortUrl: 'https://prompt2site-demo.netlify.app/s/demo123',
+          deployUrl: 'https://demo-site.netlify.app'
+        }
       });
-    }
+    }, 2000);
   };
 
   const handleReset = () => {
