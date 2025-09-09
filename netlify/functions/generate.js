@@ -188,13 +188,26 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // For now, use data URL (immediate deployment)
-    // TODO: Add real deployment options later
+    // Deploy the HTML (using data URL for now)
     const deployUrl = `data:text/html;charset=utf-8,${encodeURIComponent(generatedHtml)}`;
     
+    // Create short link
     const baseUrl = process.env.URL || 'https://prompt2site-demo.netlify.app';
     const shortSlug = Math.random().toString(36).substring(2, 8);
     const shortUrl = `${baseUrl}/s/${shortSlug}`;
+    
+    // Store the short link mapping
+    // Call the redirect function to store the mapping
+    try {
+      await fetch(`${baseUrl}/.netlify/functions/store-link`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug: shortSlug, url: deployUrl })
+      });
+    } catch (error) {
+      console.log('Could not store link mapping:', error);
+      // Continue anyway, direct URL will still work
+    }
 
     return {
       statusCode: 200,
