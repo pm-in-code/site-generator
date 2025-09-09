@@ -13,13 +13,7 @@
   to = "/.netlify/functions/health"
   status = 200
 
-# Short link redirects
-[[redirects]]
-  from = "/s/*"
-  to = "/.netlify/functions/redirect"
-  status = 200
-
-# (Functions are automatically available at /.netlify/functions/)
+# Short links disabled for now - using direct URLs
 
 # Fallback for SPA
 [[redirects]]
