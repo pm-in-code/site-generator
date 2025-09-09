@@ -10,7 +10,7 @@ exports.handler = async (event, context) => {
 
   try {
     // Check required environment variables
-    const openaiConfigured = !!process.env.OPENAI_API_KEY;
+    const openaiConfigured = !!process.env.OPEN_AI;
     const netlifyConfigured = !!process.env.NETLIFY_AUTH_TOKEN;
     
     const healthy = openaiConfigured; // For now, just check OpenAI

@@ -26,7 +26,7 @@ exports.handler = async (event, context) => {
     }
 
     // Check if OpenAI API key is configured
-    const openaiApiKey = process.env.OPENAI_API_KEY;
+    const openaiApiKey = process.env.OPEN_AI;
     if (!openaiApiKey) {
       return {
         statusCode: 500,
