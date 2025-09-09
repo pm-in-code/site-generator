@@ -49,7 +49,7 @@ export default function Home() {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            Prompt2Site
+            BRAYN - Prompt2Site
           </h1>
           <p className="text-gray-600 text-lg">
             Turn your ideas into live websites instantly
