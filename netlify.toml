@@ -1,0 +1,33 @@
+[build]
+  command = "npm run build && npm run export"
+  publish = "out"
+
+# API functions
+[[redirects]]
+  from = "/api/generate"
+  to = "/.netlify/functions/generate"
+  status = 200
+
+[[redirects]]
+  from = "/api/health"
+  to = "/.netlify/functions/health"
+  status = 200
+
+# Short link redirects
+[[redirects]]
+  from = "/s/*"
+  to = "/.netlify/functions/redirect"
+  status = 200
+
+# Fallback for SPA
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Netlify Functions
+[functions]
+  directory = "netlify/functions"
